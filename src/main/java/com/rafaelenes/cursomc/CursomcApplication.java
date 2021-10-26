@@ -71,24 +71,28 @@ public class CursomcApplication implements CommandLineRunner{
 		Cidade c1 = new Cidade(null, "Uberlandia", est1);
 		Cidade c2 = new Cidade(null, "São Paulo", est2);
 		Cidade c3 = new Cidade(null, "Campinas", est2);
+		Cidade c4 = new Cidade(null, "Assis", est2);
 		
 		est1.getCidades().addAll(Arrays.asList(c1));
-		est2.getCidades().addAll(Arrays.asList(c2, c3));
+		est2.getCidades().addAll(Arrays.asList(c2, c3, c4));
 		
 		estadoRepository.saveAll(Arrays.asList(est1, est2));
-		cidadeRepository.saveAll(Arrays.asList(c1, c2, c3));
+		cidadeRepository.saveAll(Arrays.asList(c1, c2, c3, c4));
 		
 		Cliente cli1 = new Cliente(null, "Maria Silva", "maria@gmail.com", "45351581850", TipoCliente.PESSOAFISICA);
+		Cliente cli2 = new Cliente(null, "Rafael Enes", "rafaelenes@gmail.com", "04662579000109", TipoCliente.PESSOAJURIDICA);
 		
 		cli1.getTelefones().addAll(Arrays.asList("18998083461", "18997297623"));
+		cli2.getTelefones().addAll(Arrays.asList("18997992221", "1833248582"));
 		
 		Endereco e1 = new Endereco(null, "Rua flores", "300", "Apto 303", "Jardim", "1980000", cli1, c1);
 		Endereco e2 = new Endereco(null, "Avenidia Matos", "105", "Sala 800", "Centro", "1234567", cli1, c2);
+		Endereco e3 = new Endereco(null, "Rua João Pessoa", "67", "Casa", "Centro", "19806000", cli2, c4);
 		
-		cli1.getEnderecos().addAll(Arrays.asList(e1, e2));
+		cli1.getEnderecos().addAll(Arrays.asList(e1, e2, e3));
 		
-		clienteRepository.saveAll(Arrays.asList(cli1));
-		enderecoRepository.saveAll(Arrays.asList(e1, e2));
+		clienteRepository.saveAll(Arrays.asList(cli1, cli2));
+		enderecoRepository.saveAll(Arrays.asList(e1, e2, e3));
 	}
 
 }
