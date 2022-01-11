@@ -21,14 +21,6 @@ public class ClienteService {
 		return obj.orElseThrow(() -> new ObjectNotFoundException(
 				"Id do cliente inválido " + id + ", Tipo: " + Cliente.class.getName()));
 	}
-	
-	public Cliente buscarClienteDocumento(String documento) {
-		Optional<Cliente> obj = repocli.findByDocumento(documento);
-		return obj.orElseThrow(() -> new ObjectNotFoundException(
-			"CPF ou CNPJ do cliente inválido" + documento + ", Tipo: " + Cliente.class.getName()));			
-				
-	}
-
 }
 
 
