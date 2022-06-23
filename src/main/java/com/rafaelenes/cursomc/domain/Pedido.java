@@ -3,11 +3,12 @@ package com.rafaelenes.cursomc.domain;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
-import java.util.Objects;
+import java.util.HashSet;
+import java.util.Set;
+
 
 @Entity
 public class Pedido implements Serializable {
-
     private static final long serialVersionUID = 1L;
 
     @Id
@@ -25,6 +26,10 @@ public class Pedido implements Serializable {
     @ManyToOne
     @JoinColumn(name="enderevo_de_entrega_id")
     private Endereco enderecoDeEntrega;
+
+    @OneToMany(mappedBy="id.pedido")
+    @ElementCollection
+    private Set<ItemPedido> itens = new HashSet<>();
 
     public Pedido() {
     }
@@ -77,16 +82,37 @@ public class Pedido implements Serializable {
         this.enderecoDeEntrega = enderecoDeEntrega;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Pedido pedido = (Pedido) o;
-        return id.equals(pedido.id);
+    public Set<ItemPedido> getItens() {
+        return itens;
+    }
+
+    public void setItens(Set<ItemPedido> itens) {
+        this.itens = itens;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id);
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((id == null) ? 0 : id.hashCode());
+        return result;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        Pedido other = (Pedido) obj;
+        if (id == null) {
+            if (other.id != null)
+                return false;
+        } else if (!id.equals(other.id))
+            return false;
+        return true;
+    }
+
 }

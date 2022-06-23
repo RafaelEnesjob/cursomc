@@ -36,11 +36,11 @@ public class CursomcApplication implements CommandLineRunner{
 	private EnderecoRepository enderecoRepository;
 
 	@Autowired
-	PedidoRepository pedidoRepository;
+	private PedidoRepository pedidoRepository;
 
 	@Autowired
-	PagamentoRepository pagamentoRepository;
-	
+	private PagamentoRepository pagamentoRepository;
+
 	public static void main(String[] args) {
 		SpringApplication.run(CursomcApplication.class, args);
 	}
