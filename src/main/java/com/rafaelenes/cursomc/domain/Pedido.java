@@ -24,11 +24,10 @@ public class Pedido implements Serializable {
     private Cliente cliente;
 
     @ManyToOne
-    @JoinColumn(name="enderevo_de_entrega_id")
+    @JoinColumn(name="endereco_de_entrega_id")
     private Endereco enderecoDeEntrega;
 
     @OneToMany(mappedBy="id.pedido")
-    @ElementCollection
     private Set<ItemPedido> itens = new HashSet<>();
 
     public Pedido() {
