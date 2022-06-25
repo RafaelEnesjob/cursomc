@@ -15,7 +15,7 @@ public class ClienteService {
 	@Autowired
 	private ClienteRepository repocli;
 	
-	public Cliente buscarClienteId(Integer id) {
+	public Cliente findByCustomerId(Integer id) {
 		Optional<Cliente> obj = repocli.findById(id);
 		return obj.orElseThrow(() -> new ObjectNotFoundException(
 				"Id do cliente inválido " + id + ", Tipo: " + Cliente.class.getName()));

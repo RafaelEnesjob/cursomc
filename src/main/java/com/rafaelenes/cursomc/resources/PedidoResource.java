@@ -1,7 +1,7 @@
 package com.rafaelenes.cursomc.resources;
 
-import com.rafaelenes.cursomc.domain.Cliente;
-import com.rafaelenes.cursomc.services.ClienteService;
+import com.rafaelenes.cursomc.domain.Pedido;
+import com.rafaelenes.cursomc.services.PedidoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,17 +10,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping(value="/clientes")
-public class ClienteResource {
-	
-	@Autowired
-	ClienteService clienteService;
-	
-	@GetMapping("{id}")
-	public ResponseEntity<?> find(@PathVariable Integer id) {
-		Cliente obj = clienteService.findByCustomerId(id);
-		return ResponseEntity.ok().body(obj);
-	}
+@RequestMapping(value="/pedidos")
+public class PedidoResource {
+
+    @Autowired
+    PedidoService pedidoService;
+
+    @GetMapping("/{id}")
+    public ResponseEntity<?> find(@PathVariable Integer id) {
+        Pedido obj = pedidoService.findById(id);
+        return ResponseEntity.ok().body(obj);
+    }
 }
-
-

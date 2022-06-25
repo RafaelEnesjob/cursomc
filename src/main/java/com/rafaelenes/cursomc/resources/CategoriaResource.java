@@ -1,7 +1,7 @@
 package com.rafaelenes.cursomc.resources;
 
-import java.util.Optional;
-
+import com.rafaelenes.cursomc.domain.Categoria;
+import com.rafaelenes.cursomc.services.CategoriaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,19 +9,16 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.rafaelenes.cursomc.domain.Categoria;
-import com.rafaelenes.cursomc.services.CategoriaService;
-
 @RestController
 @RequestMapping(value="/categorias")
 public class CategoriaResource {
 	
 	@Autowired
-	private CategoriaService service;
+	private CategoriaService categoriaService;
 	
 	@GetMapping("/{id}")
 	public ResponseEntity<?> find(@PathVariable Integer id) {
-		Categoria obj = service.find(id);
+		Categoria obj = categoriaService.findById(id);
 		return ResponseEntity.ok().body(obj);
 	}
 	
