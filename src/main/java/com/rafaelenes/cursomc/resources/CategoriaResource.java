@@ -30,16 +30,16 @@ public class CategoriaResource {
 		return ResponseEntity.created(uri).build();
 	}
 
-	@PutMapping(value = "/{id}")
+	@PutMapping("/{id}")
 	public ResponseEntity<Void> update(@RequestBody Categoria obj, @PathVariable Integer id) {
 		obj.setId(id);
 		obj = categoriaService.update(obj);
 		return ResponseEntity.noContent().build();
 	}
-	
-//	@GetMapping("/{id}") NÃO FUNCIONA ASSIM POIS NÃO DA PRA CONVERTER DE <CATEGORIA> PARA OPTIONAL
-//	public ResponseEntity<?> find(@PathVariable Integer id) {
-//		Optional<Categoria> obj = service.buscar(id);
-//		return ResponseEntity.ok().body(obj);
-//	}
+
+	@DeleteMapping("/{id}")
+	public ResponseEntity<Void> delete(@PathVariable Integer id){
+		categoriaService.delete(id);
+		return ResponseEntity.noContent().build();
+	}
 }
