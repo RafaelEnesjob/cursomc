@@ -17,7 +17,7 @@ public class CategoriaResource {
 	private CategoriaService categoriaService;
 	
 	@GetMapping("/{id}")
-	public ResponseEntity<?> find(@PathVariable Integer id) {
+	public ResponseEntity<Categoria> find(@PathVariable Integer id) {
 		Categoria obj = categoriaService.findById(id);
 		return ResponseEntity.ok().body(obj);
 	}
@@ -27,7 +27,14 @@ public class CategoriaResource {
 		obj = categoriaService.insert(obj);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
 				.path("/{id}").buildAndExpand(obj.getId()).toUri();
-		return  ResponseEntity.created(uri).build();
+		return ResponseEntity.created(uri).build();
+	}
+
+	@PutMapping(value = "/{id}")
+	public ResponseEntity<Void> update(@RequestBody Categoria obj, @PathVariable Integer id) {
+		obj.setId(id);
+		obj = categoriaService.update(obj);
+		return ResponseEntity.noContent().build();
 	}
 	
 //	@GetMapping("/{id}") NÃO FUNCIONA ASSIM POIS NÃO DA PRA CONVERTER DE <CATEGORIA> PARA OPTIONAL
@@ -35,5 +42,4 @@ public class CategoriaResource {
 //		Optional<Categoria> obj = service.buscar(id);
 //		return ResponseEntity.ok().body(obj);
 //	}
-	
 }
