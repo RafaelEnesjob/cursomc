@@ -49,11 +49,14 @@ public class Cliente implements Serializable {
 
 	public Cliente(Integer id, String nome, String email, String documento, TipoCliente tipo) {
 		super();
-		id = id;
+		this.id = id;
 		this.nome = nome;
 		this.email = email;
 		this.documento = documento;
-		this.tipo = tipo.getCod();
+		this.tipo = (tipo == null) ? null : tipo.getCod();
+	}
+
+	public Cliente(Integer id, String nome) {
 	}
 
 	public Integer getId() {
@@ -61,7 +64,7 @@ public class Cliente implements Serializable {
 	}
 
 	public void setId(Integer id) {
-		id = id;
+		this.id = id;
 	}
 
 	public String getNome() {
